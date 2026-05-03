@@ -1,0 +1,40 @@
+# ── Terraform State ─────────────────────────────────────────────────────────────
+*.tfstate
+*.tfstate.*
+*.tfstate.backup
+
+# ── Terraform Lockfile (local lock, not the S3 lockfile) ────────────────────────
+.terraform.tfstate.lock.info
+
+# ── Terraform Working Directory ──────────────────────────────────────────────────
+.terraform/
+.terraform.lock.hcl
+
+# ── Saved Plan Files ─────────────────────────────────────────────────────────────
+*.tfplan
+tfplan
+
+# ── Variable Files (may contain secrets) ────────────────────────────────────────
+*.tfvars.json
+*.auto.tfvars
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# ── Crash Logs ───────────────────────────────────────────────────────────────────
+crash.log
+crash.*.log
+
+# ── AWS Credentials ──────────────────────────────────────────────────────────────
+.aws/
+*.pem
+*.key
+
+# ── OS & Editor Noise ────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
