@@ -20,6 +20,12 @@ resource "aws_eks_cluster" "this" {
     bootstrap_cluster_creator_admin_permissions = true
   }
 
+  timeouts {
+    create = "60m"
+    update = "60m"
+    delete = "15m"
+  }
+
   depends_on = [
     aws_iam_role_policy_attachment.cluster_eks,
     aws_cloudwatch_log_group.eks,
@@ -30,7 +36,7 @@ resource "aws_eks_cluster" "this" {
 
 resource "aws_cloudwatch_log_group" "eks" {
   name              = "/aws/eks/${var.cluster_name}/cluster"
-  retention_in_days = 7
+  retention_in_days = var.log_retention_days
 }
 
 # ── EKS Managed Add-ons ─────────────────────────────────────────────────────────
@@ -43,6 +49,12 @@ resource "aws_eks_addon" "this" {
   addon_version            = data.aws_eks_addon_version.this[each.key].version
   resolve_conflicts_on_create = "OVERWRITE"
   resolve_conflicts_on_update = "OVERWRITE"
+
+  timeouts {
+    create = "20m"
+    update = "20m"
+    delete = "20m"
+  }
 
   depends_on = [aws_eks_node_group.this]
 }

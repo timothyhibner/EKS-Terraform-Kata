@@ -105,6 +105,12 @@ variable "admin_group_name" {
   default     = "eks-kata-admins"
 }
 
+variable "log_retention_days" {
+  description = "CloudWatch log retention in days for EKS control plane logs"
+  type        = number
+  default     = 7
+}
+
 variable "tags" {
   description = "Common tags applied to all resources"
   type        = map(string)

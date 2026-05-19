@@ -33,8 +33,11 @@ resource "aws_eks_node_group" "this" {
   }
 
   lifecycle {
-    # Ignore changes to desired_size so that cluster autoscaler can manage it
-    ignore_changes = [scaling_config[0].desired_size]
+    ignore_changes = [
+      scaling_config[0].desired_size,
+      launch_template,
+      release_version,
+    ]
   }
 
   depends_on = [
